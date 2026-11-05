@@ -1,6 +1,5 @@
 :root {
   --paper: #f6eee3;
-  --paper-2: #ecdfcf;
   --fur: #483831;
   --skin: #dabfa2;
   --salmon: #e2675c;
@@ -32,40 +31,6 @@ body {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-}
-
-/* Giant marquee words behind everything */
-.marquee {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2vh;
-  pointer-events: none;
-  transform: rotate(-6deg) scale(1.15);
-}
-
-.marquee__row {
-  display: flex;
-  width: max-content;
-  font-size: clamp(5rem, 17vw, 16rem);
-  font-weight: 800;
-  line-height: .9;
-  letter-spacing: -.04em;
-  text-transform: lowercase;
-  white-space: nowrap;
-  color: var(--paper-2);
-  animation: slide 60s linear infinite;
-}
-
-.marquee__row--rev { animation-direction: reverse; animation-duration: 75s; }
-.marquee__row span { padding-right: .35em; }
-
-@keyframes slide {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
 }
 
 /* Stage */

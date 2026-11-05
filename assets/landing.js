@@ -138,7 +138,6 @@
   const btn = $('.gorilla-btn');
   const eyes = $('.gorilla .eyes');
   const hero = $('.hero');
-  const marquee = $('.marquee');
 
   function look(x, y) {
     const r = btn.getBoundingClientRect();
@@ -154,7 +153,6 @@
     if (!reduced) {
       const px = (e.clientX / W - .5), py = (e.clientY / H - .5);
       hero.style.transform = `translate(${px * -14}px, ${py * -10}px)`;
-      marquee.style.translate = `${px * 30}px ${py * 20}px`;
     }
   });
   document.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });

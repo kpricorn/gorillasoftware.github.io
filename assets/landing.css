@@ -1,0 +1,254 @@
+:root {
+  --paper: #f6eee3;
+  --fur: #483831;
+  --skin: #dabfa2;
+  --salmon: #e2675c;
+  --mustard: #f4b63f;
+  --teal: #2a9d8f;
+  --pink: #f29bb4;
+  --sky: #5b8def;
+  --leaf: #3f8f5a;
+  --sun: var(--salmon);
+  --offset: var(--mustard);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  background: var(--paper);
+  color: var(--fur);
+  font-family: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#jungle {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Stage */
+.stage {
+  position: relative;
+  z-index: 2;
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: clamp(1.5rem, 4vh, 3rem);
+  padding: 2rem 16px;
+  text-align: center;
+  overflow: clip;
+}
+
+.hero {
+  position: relative;
+  width: min(68vw, 46vh, 420px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: end center;
+  transition: transform .2s ease-out;
+}
+
+.sun,
+.sun-offset {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transition: background-color .35s ease;
+}
+
+.sun { background: var(--sun); }
+
+.sun-offset {
+  background: var(--offset);
+  translate: 5% 4%;
+  animation: orbit 9s ease-in-out infinite;
+}
+
+@keyframes orbit {
+  25% { translate: -4% 5%; }
+  50% { translate: -5% -3%; }
+  75% { translate: 4% -5%; }
+}
+
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 40%;
+  aspect-ratio: 1;
+  border: 6px solid var(--c, var(--fur));
+  border-radius: 50%;
+  translate: -50% -50%;
+  pointer-events: none;
+  animation: ring .8s cubic-bezier(.15, .7, .3, 1) forwards;
+}
+
+@keyframes ring {
+  from { scale: .3; opacity: 1; }
+  80% { opacity: 1; }
+  to { scale: 4.5; opacity: 0; }
+}
+
+.gorilla-btn {
+  position: relative;
+  width: 92%;
+  margin-bottom: -6%;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gorilla-btn:focus-visible { outline: 3px dashed var(--fur); outline-offset: 8px; border-radius: 12px; }
+
+.gorilla { display: block; width: 100%; height: auto; overflow: visible; }
+.gorilla .fur { fill: var(--fur); }
+.gorilla .skin { fill: var(--skin); }
+.gorilla .eye { fill: #fff; }
+.gorilla .shadow path { fill: var(--fur); opacity: .18; }
+
+.gorilla .body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.012, 1.03); }
+}
+
+.gorilla .eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: translate .15s ease-out;
+}
+
+.gorilla .eyes.blink { animation: blink .18s ease-in-out; }
+
+@keyframes blink {
+  50% { scale: 1 .05; }
+}
+
+.gorilla-btn.beat .body { animation: beat .5s cubic-bezier(.3, 1.6, .5, 1); }
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  20% { transform: scale(1.12, .9); }
+  45% { transform: scale(.94, 1.1) translateY(-4%); }
+  70% { transform: scale(1.04, .97); }
+  100% { transform: scale(1); }
+}
+
+body.shake .stage { animation: shake .35s linear; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-6px, 3px) rotate(-.5deg); }
+  30% { transform: translate(5px, -4px) rotate(.4deg); }
+  45% { transform: translate(-4px, -2px); }
+  60% { transform: translate(3px, 4px) rotate(-.2deg); }
+  80% { transform: translate(-2px, 1px); }
+}
+
+.thump {
+  position: absolute;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 4.5vw, 2.3rem);
+  letter-spacing: .02em;
+  color: var(--c, var(--fur));
+  text-shadow: 3px 3px 0 var(--fur);
+  pointer-events: none;
+  text-transform: uppercase;
+  animation: thump .9s ease-out forwards;
+  white-space: nowrap;
+  z-index: 5;
+}
+
+@keyframes thump {
+  from { opacity: 1; transform: translate(-50%, 0) scale(.6) rotate(var(--r, 0deg)); }
+  30% { transform: translate(-50%, -30px) scale(1.2) rotate(var(--r, 0deg)); }
+  80% { opacity: 1; }
+  to { opacity: 0; transform: translate(-50%, -90px) scale(1) rotate(var(--r, 0deg)); }
+}
+
+/* Wordmark + email */
+.brand {
+  font-size: clamp(.8rem, 2.4vw, 1rem);
+  font-weight: 700;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  color: var(--fur);
+  margin-right: -.5em;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.email {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: clamp(1.3rem, 5.4vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--fur);
+  text-decoration: none;
+  max-width: 100%;
+}
+
+.email .ch {
+  display: inline-block;
+  transition: transform .35s cubic-bezier(.3, 1.8, .5, 1), color .15s;
+}
+
+.email .ch.at { color: var(--salmon); }
+
+.email:hover .ch,
+.email:focus-visible .ch {
+  color: var(--c);
+  transform: translateY(-.18em) rotate(var(--tilt, 0deg));
+  transition-delay: calc(var(--i) * 18ms);
+}
+
+.email:hover .ch.at { color: var(--fur); transform: translateY(-.18em) rotate(360deg); }
+.email:focus-visible { outline: none; }
+
+.copy {
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--fur);
+  background: var(--paper);
+  border: 2px solid var(--fur);
+  border-radius: 999px;
+  padding: .55em 1.3em;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--fur);
+  transition: background-color .15s, box-shadow .1s, translate .1s;
+}
+
+.copy:hover, .copy:focus-visible { background: var(--mustard); outline: none; }
+.copy:active { translate: 3px 3px; box-shadow: 1px 1px 0 var(--fur); }
+.copy.done { background: var(--teal); color: var(--paper); }
+
+/* Entrance */
+.reveal { opacity: 0; translate: 0 24px; animation: reveal .9s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: var(--delay, 0s); }
+@keyframes reveal { to { opacity: 1; translate: 0 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}

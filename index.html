@@ -1,384 +1,48 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="de">
 <head>
-<meta content='width=device-width,initial-scale=1' name='viewport'>
-<meta charset='utf-8'>
-<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-<meta content='Individuelle Lösungen fürs Web. Ein Full-Stack Web-Engineering Shop in Zürich, Schweiz' name='description'>
-<meta content='Software Development, Softwareentwicklung, Software, Mobile Apps, HTML5, CSS, Zürich, Blog, Schweiz, Ruby, Ruby on Rails, Node.js, Python, Heroku, Linux, Git, Consulting, Coaching, Javascript, Open Source, Web Design, Responsive Design, CoffeeScript, Backbone.js, Solr, ELasticSearch, RubyMotion, Game development' name='keywords'>
-<title>Individuelle Lösungen fürs Web • gorilla software</title>
-<link rel="apple-touch-icon-precomposed apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png" type="image/png" />
-<link rel="apple-touch-icon-precomposed apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png?1596465550" type="image/png" />
-<link rel="apple-touch-icon-precomposed apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png?1596465550" type="image/png" />
-<link rel="apple-touch-icon-precomposed apple-touch-icon" href="/apple-touch-icon-precomposed.png" type="image/png" />
-<link rel="shortcut icon" type="image/ico" href="/favicon.png?1596465550" />
-<link rel="icon" type="image/ico" href="/favicon.ico" />
-<link href="/stylesheets/app-108af2c5.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap" media="screen" rel="stylesheet" type="text/css" />
-<script src="/javascripts/modernizr-c4928287.js" type="text/javascript"></script>
-<script>
-  try{Typekit.load();}catch(e){}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gorilla software</title>
+<meta name="description" content="gorilla software GmbH – individuelle Lösungen fürs Web.">
+<meta name="theme-color" content="#f6eee3">
+<meta property="og:title" content="gorilla software">
+<meta property="og:description" content="gorilla software GmbH – individuelle Lösungen fürs Web.">
+<meta property="og:image" content="https://gorillasoftware.ch/images/gorilla-bec0bc43.png">
+<link rel="icon" href="/favicon-bf8b30ef.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon-152x152-precomposed.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="stylesheet" href="/assets/landing.css">
 </head>
-<body class='index'>
+<body>
+<canvas id="jungle" aria-hidden="true"></canvas>
 
-<header id='header-container'>
-<div class='page' id='teaser'>
-<a href='/#about'>
-<div class='row gorilla'>
-<div class='gorilla small-6 small-centered columns medium-6 large-4'></div>
+<main class="stage">
+<div class="hero reveal">
+<div class="sun-offset" aria-hidden="true"></div>
+<div class="sun" aria-hidden="true"></div>
+<button class="gorilla-btn" type="button" aria-label="Beat the gorilla's chest">
+<svg class="gorilla" viewBox="0 0 385.06 361.88" role="img" aria-labelledby="gTitle">
+<title id="gTitle">gorilla software</title>
+<g transform="translate(-43.746378,-9.0241567)">
+<g class="shadow"><path class="" d="m 80.15378,328.1011 92.14286,-6.42857 c 6.56599,-1.89404 8.34735,-11.13271 16.42857,-12.14286 9.21764,-1.89404 33.79795,7.20041 48.57143,10.35714 8.46003,-1.38896 29.89104,-12.46038 44.28572,-11.07142 8.46002,1.01015 11.29115,9.99628 17.85714,12.14285 8.83883,3.283 95.71428,5.71429 95.71428,5.71429 0,0 20.05076,13.63578 15,25 -3.03046,6.06092 -9.27456,8.44144 -15.71428,10.71428 -10.73287,2.27284 -58.51323,3.11712 -67.85714,-1.42857 -8.83883,-5.68211 -18.04033,-21.8866 -33.57143,-24.28571 -10.73287,-1.6415 -114.14458,-2.06735 -122.85715,2.85714 -8.58629,4.29315 -1.72316,29.87745 -26.97697,29.87745 -21.2132,4.04061 -63.08738,-0.1869 -77.22952,-11.29858 -9.34391,-9.72272 -7.51794,-14.49865 -6.50779,-18.03418 4.54569,-5.42957 20.71428,-11.97326 20.71428,-11.97326 z"/></g>
+<g class="body">
+<path class="fur" d="m 236.28051,127.86695 c -17.42603,0 -31.71481,-11.44769 -33.23079,-26.04142 -0.84025,-0.59016 -1.32291,-1.39312 -1.32291,-2.525165 0,-0.702044 0.21061,-1.384342 0.54189,-2.053478 6.45002,3.723023 19.25135,9.337183 34.01181,9.337183 14.8921,0 27.78118,-5.71508 34.17416,-9.438101 0.36419,0.699849 0.58577,1.419444 0.58577,2.154396 0,1.239545 -0.54189,2.106125 -1.54011,2.705065 -1.61689,14.50816 -15.87276,25.86152 -33.21982,25.86152 m 16.96313,-62.271254 c 0,0.741533 -0.59454,1.344852 -1.34047,1.344852 -0.73714,0 -1.34046,-0.603319 -1.34046,-1.344852 0,-0.741534 0.60332,-1.344852 1.34046,-1.344852 0.74593,0 1.34047,0.603318 1.34047,1.344852 m -27.73072,0 c 0,0.741533 -0.60551,1.344852 -1.34266,1.344852 -0.74372,0 -1.34485,-0.603319 -1.34485,-1.344852 0,-0.741534 0.60113,-1.344852 1.34485,-1.344852 0.73715,0 1.34266,0.603318 1.34266,1.344852 m -18.52956,3.284247 c 0,-5.590021 5.26313,-5.596603 12.29234,-5.500072 -0.88194,0.833677 -1.44138,2.0096 -1.44138,3.321543 0,2.527357 2.04251,4.572058 4.57206,4.572058 2.52735,0 4.58083,-2.044701 4.58083,-4.572058 0,-1.178116 -0.45852,-2.242151 -1.19128,-3.051695 4.49747,0.680105 8.28412,2.803786 10.48239,5.686552 2.19827,-2.882766 5.98711,-5.006447 10.48019,-5.686552 -0.73276,0.809544 -1.18908,1.873579 -1.18908,3.051695 0,2.527357 2.04908,4.572058 4.57205,4.572058 2.52955,0 4.58084,-2.044701 4.58084,-4.572058 0,-1.311943 -0.55944,-2.487866 -1.44577,-3.321543 7.02701,-0.09653 12.28795,-0.08986 12.28795,5.500072 0,4.124505 -2.8696,10.278355 -7.19375,14.192248 5.70849,2.26409 9.65749,6.041961 10.86412,12.090505 -6.72645,1.636639 -18.94859,4.400935 -32.95436,4.400935 -14.01015,0 -26.23229,-2.76649 -32.95655,-4.400935 1.20444,-6.048544 5.14905,-9.826415 10.85535,-12.088311 -4.32635,-3.913893 -7.19595,-10.069937 -7.19595,-14.194442 M 144.33037,354.09169 c 0,0 30.99302,-36.15963 15.49322,-51.65504 -15.49322,-15.49761 -26.86194,-6.19993 -26.86194,-6.19993 0,0 -26.1226,-34.07104 8.0033,-96.27429 1.35362,1.34046 2.7248,2.69848 4.1245,4.09599 42.78955,42.79832 45.9663,90.76325 53.36628,108.09275 -2.10833,-0.49801 -4.24737,-0.79638 -6.20651,-0.79638 -7.92431,0 -9.9383,4.86385 -9.9383,8.15029 l 28.68506,0 c 0,-0.66694 -0.46291,-1.3997 -1.23955,-2.14124 0.17323,-22.80105 8.32361,-29.23133 25.85495,-29.23133 17.7266,0 25.87688,6.54436 25.87688,29.95532 0,0.10969 0.0658,0.18648 0.15796,0.24791 -0.25888,0.40367 -0.41464,0.79857 -0.41464,1.16934 l 28.68286,0 c 0,-3.28644 -2.01399,-8.15029 -9.93611,-8.15029 -2.31016,0 -4.86604,0.42123 -7.32977,1.09036 7.48554,-17.09037 10.46483,-65.35586 53.49132,-108.38673 1.69807,-1.70027 3.34787,-3.32813 4.98232,-4.93625 34.82355,62.73197 8.4684,97.11455 8.4684,97.11455 0,0 -11.36433,-9.29768 -26.85755,6.19993 -15.49981,15.49541 15.48883,51.65504 15.48883,51.65504 21.69534,9.29769 69.2193,-9.2933 69.2193,-9.2933 C 487.72835,151.20112 354.36423,75.16762 354.36423,75.16762 l -0.0198,0.05265 C 334.81003,59.509856 306.55059,47.83619 273.7849,42.700303 268.35504,34.41619 261.29292,27.035958 253.23039,22.490226 c 2.84766,-4.258332 6.84492,-7.538192 6.84492,-7.538192 0,0 -8.05595,0.335665 -15.40327,3.979709 -0.87317,-0.243521 -1.75511,-0.447552 -2.64363,-0.618676 2.41327,-6.559718 8.40916,-9.2889123 8.40916,-9.2889123 -15.59414,2.9551643 -24.44866,9.0870753 -27.72633,11.7745853 -9.44907,4.232006 -17.7266,12.443721 -23.89361,21.83794 -33.24395,5.155632 -61.85881,17.042106 -81.4875,33.044309 -11.21954,6.915128 -128.254572,84.642311 -42.219143,269.117401 0,0 47.523953,18.59099 69.219293,9.2933"/>
+<g class="face"><path class="skin" d="m 225.71388,111.72982 c 0,0 4.72563,0.84025 10.56576,0.84025 5.83793,0 10.56794,-0.84025 10.56794,-0.84025 0,0 -4.73001,4.08282 -10.56794,4.08282 -5.84013,0 -10.56576,-4.08282 -10.56576,-4.08282 m 43.78558,-9.7255 c 0.99821,-0.59674 1.5401,-1.46552 1.5401,-2.702867 0,-0.737146 -0.21939,-1.454547 -0.58357,-2.154396 -6.39518,3.723023 -19.28426,9.435903 -34.17635,9.435903 -14.75828,0 -27.5596,-5.61196 -34.01182,-9.337178 -0.33127,0.669135 -0.54189,1.353627 -0.54189,2.055671 0,1.132047 0.48266,1.935007 1.32292,2.522967 1.51597,14.59592 15.80475,26.04143 33.23079,26.04143 17.34924,0 31.60512,-11.35117 33.21982,-25.86153"/><path class="skin" d="m 231.04874,79.663559 c 2.16756,-0.368573 4.02359,-0.06143 4.15742,0.686686 0.12286,0.741534 -1.53572,1.645415 -3.69889,2.0096 -2.17634,0.366379 -4.03237,0.05915 -4.15742,-0.684493 -0.12724,-0.748115 1.52695,-1.649802 3.69889,-2.011793 m 10.46045,0 c 2.16317,0.361991 3.82614,1.263678 3.6967,2.011793 -0.12725,0.743728 -1.98766,1.050872 -4.15083,0.684493 -2.17414,-0.364185 -3.82833,-1.268066 -3.70328,-2.0096 0.12953,-0.748115 1.98766,-1.055259 4.15741,-0.686686 m -38.18678,15.49761 c 6.72646,1.636639 18.9486,4.400935 32.95875,4.400935 14.00577,0 26.22791,-2.762102 32.95217,-4.400935 -1.20664,-6.04635 -5.15344,-9.824221 -10.86193,-12.088311 4.32415,-3.913893 7.19156,-10.067743 7.19156,-14.192248 0,-5.590021 -5.25875,-5.598797 -12.28576,-5.500072 0.88633,0.833677 1.44577,2.009599 1.44577,3.321543 0,2.527357 -2.05348,4.572058 -4.58084,4.572058 -2.52297,0 -4.57206,-2.044701 -4.57206,-4.572058 0,-1.178116 0.45633,-2.244345 1.18909,-3.053889 -4.49527,0.682299 -8.28192,2.80598 -10.48019,5.688746 -2.19828,-2.882766 -5.98712,-5.006447 -10.48458,-5.688746 0.73276,0.809544 1.19128,1.875773 1.19128,3.053889 0,2.527357 -2.05129,4.572058 -4.57864,4.572058 -2.52955,0 -4.57206,-2.044701 -4.57206,-4.572058 0,-1.311944 0.55725,-2.487866 1.44138,-3.321543 -7.02921,-0.09881 -12.29234,-0.09004 -12.29234,5.500072 0,4.124505 2.8696,10.280549 7.19595,14.194442 -5.7063,2.261896 -9.65091,6.039767 -10.85755,12.086117"/></g>
+<g class="eyes"><path class="eye" d="m 222.82585,65.596135 c 0,0.741533 0.59893,1.342658 1.34485,1.342658 0.73715,0 1.34266,-0.601125 1.34266,-1.342658 0,-0.741534 -0.60551,-1.344852 -1.34266,-1.344852 -0.74592,0 -1.34485,0.603318 -1.34485,1.344852"/><path class="eye" d="m 250.56227,65.596135 c 0,0.741533 0.60332,1.342658 1.34047,1.342658 0.74592,0 1.34265,-0.601125 1.34265,-1.342658 0,-0.741534 -0.59673,-1.344852 -1.34265,-1.344852 -0.73715,0 -1.34047,0.603318 -1.34047,1.344852"/></g>
+<path class="fur" d="m 227.35075,81.675335 c 0.12496,0.743727 1.97888,1.050871 4.15741,0.684492 2.16317,-0.364185 3.82175,-1.268066 3.6967,-2.009599 -0.13163,-0.748115 -1.98766,-1.055259 -4.15522,-0.686687 -2.17414,0.361992 -3.82833,1.263679 -3.69889,2.011794"/><path class="fur" d="m 237.35178,80.34914 c -0.12497,0.743727 1.52914,1.645414 3.70328,2.009599 2.16317,0.366379 4.02139,0.05915 4.15083,-0.684492 0.12953,-0.745922 -1.53353,-1.647609 -3.6967,-2.011794 -2.16975,-0.366379 -4.02797,-0.06143 -4.15741,0.686687"/><path class="fur" d="m 246.84736,111.72982 c 0,0 -4.73002,0.84025 -10.56576,0.84025 -5.84232,0 -10.56795,-0.84025 -10.56795,-0.84025 0,0 4.72563,4.08282 10.56795,4.08282 5.83574,0 10.56576,-4.08282 10.56576,-4.08282"/>
+</g></g></svg>
+</button>
 </div>
-</a>
+<h1 class="brand reveal" style="--delay:.15s">gorilla software</h1>
+<div class="contact reveal" style="--delay:.3s">
+<a class="email" data-user="sebastian" data-domain="gorillasoftware.ch" href="mailto:sebastian@gorillasoftware.ch">sebastian@gorillasoftware.ch</a>
+<button class="copy" type="button">copy address</button>
 </div>
-
-<div class="contain-to-grid sticky"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">gorilla software</a></h1></li><li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li></ul><section class="top-bar-section"><ul class="right"><li><a href="/#about">Was</a></li><li><a href="/#team">Wer</a></li><li><a href="/#services">Wie</a></li><li><a href="/#clients">Referenzen</a></li><li><a href="/#contact">Kontakt</a></li><li><a href="/blog">Blog</a></li></ul></section></nav></div>
-</header>
-<div id='content-container'>
-<div id='content'><section class='page' id='about'>
-<div class='row'>
-<h1 class='columns small-12 small-centered'>Individuelle Lösungen fürs Web</h1>
-</div>
-<div class='row'>
-<p class='motto columns medium-8 large-8 small-centered'>
-gorilla software bietet individuelle Lösungen fürs Web. Programmieren ist
-meine Leidenschaft und ich verfolge dabei einen agilen und pragmatischen
-Softwareentwicklungsansatz. Die Nachhaltigkeit meiner Arbeit ist mir
-wichtig. Mit Rapid Prototyping kann ich Kundenbedürfnisse frühzeitig
-erkennen. Test-Driven Development hilft mir dabei, Qualität zu einer
-Anforderung zu machen.
-</p>
-</div>
-<div class='solutions row text-justify'>
-<div class='web solution columns small-centered medium-8 large-6 large-uncentered'>
-<div class='img'></div>
-<h3>
-Web- & Mobilanwendungen
-</h3>
-<p class='profile-info'>
-Mein Portfolio beinhaltet Lösungen für Webanwendungen, die
-vom mobilen Client, über Web-Schnittstellen bis hin zur komplexen
-Datenverarbeitung ein breites Spektrum abdecken.
-</p>
-</div>
-<div class='standards solution columns small-centered medium-8 large-6 large-uncentered'>
-<div class='img'></div>
-<h3>
-APIs und Integrationen
-</h3>
-<p class='profile-info'>
-Beenden sie das Inseldasein ihrer Lösung. Ich helfe ihnen, Daten von
-Partnern oder öffentlichen Anbietern einzubinden, oder ihre Daten
-für andere zur Verfügung zu stellen. Ihre Web-Schnittstellen
-(APIs) entwickle ich nach offenen Standards.
-</p>
-</div>
-<div class='webmining solution columns small-centered medium-8 large-6 large-uncentered'>
-<div class='img'></div>
-<h3>
-Big Data und Web-Mining
-</h3>
-<p class='profile-info'>
-Ich helfe ihnen, unstrukturierte Daten such- und fassbar zu machen.
-Eine Sammlung an bewährten Tools und Frameworks ermöglichen es mir
-gezielt auf Informationen zuzugreifen und diese für sie individuell
-darzustellen.
-</p>
-</div>
-<div class='consulting solution columns small-centered medium-8 large-6 large-uncentered'>
-<div class='img'></div>
-<h3>
-Coaching & Consulting
-</h3>
-<p class='profile-info text-justify'>
-Während meiner jahrelangen Tätigkeit als Full-Stack Entwickler konnte
-ich mir einen grossen Erfahrungsschatz anlegen. Diesen kann ich als
-freier Mitarbeiter, Coach oder Berater in ihr Projektteam
-einfliessen lassen.
-</p>
-<p class='profile-info text-justify'>
-Neben klassischen Themen wie Software Architektur und Implementation
-biete ich Unterstützung bei Agilen Methodologien wie Test- & Behaviour
-Driven Development, Continuous Integration und Continuous Deployment.
-</p>
-</div>
-</div>
-<div class='solutions row'>
-<div class='consulting solution columns small-centered medium-8'>
-<p class='profile-info'>
-Sie wollen mit mir zusammenarbeiten?
-<br>
-Nehmen sie mit mir Kontakt auf.
-<br>
-<a href="mailto:sebastian@gorillasoftware.ch">sebastian@gorillasoftware.ch</a>
-</p>
-</div>
-</div>
-<div class='separator'>
-<div class='line line-1'></div>
-</div>
-</section>
-<section class='page' id='testimonials'>
-<h3>Das sagen meine Kunden</h3>
-<div class='testimonials row'>
-<div class='columns small-centered medium-8 large-6'>
-<ul data-options='animation_speed:500;animation:fade;timer_speed:8000;pause_on_hover:true;navigation_arrows:false;bullets:false;slide_number:false;resume_on_mouseout:true;timer_show_progress_bar:false;' data-orbit=''>
-<li class='testimonial'>
-<blockquote>
-Wir haben gorilla software GmbH als kompetenten und pragmatischen
-Partner erlebt, versiert in verschiedenen Technologien.
-Unkomplizierte und effiziente Zusammenarbeit.
-<br>
-<cite>Felipe Kaufmann, Team Leader Software Engineering at Screen Concept</cite>
-</blockquote>
-</li>
-<li class='testimonial'>
-<blockquote>
-We were very happy with the solution presented by the Gorilla GmbH. It only took a few days and everything was set up perfectly and well documented. Also the support was flawless, email and phone support were availalbe immediatley
-<cite>Nicolas Buechi, Art Director at winterlife.com</cite>
-</blockquote>
-</li>
-</ul>
-</div>
-</div>
-</section>
-<section class="page" id="team"><h1>wer</h1><article class="team"><div class="teamlist row"><div class="who columns small-centered large-4 medium-4 small-8"><h3>Sebastian de Castelberg</h3><div class="members-box"><div class="photo photo-one"></div></div><div class="photo-footer"><div class="plus-btn"></div><div class="socialicons"><a href="https://github.com/kpricorn"><div class="t t-github"></div></a><a href="mailto:sebastian@gorillasoftware.ch"><div class="t t-mail"></div></a></div></div></div></div></article></section><section class='page' id='services'>
-<h1>wie</h1>
-<div class='services row'>
-<div class='langs service columns large-6'>
-<div class='img'></div>
-<h3>Programmiersprachen</h3>
-<p>
-Ich besitze breit abgestützte Erfahrung in Web- und
-Applikationsentwicklung mit
-<span class='label radius'>Ruby</span>
-,
-<span class='label radius'>PHP</span>
-,
-<span class='label radius'>JavaScript</span>
-. Auch in systemnaher Umgebung mit
-<span class='label radius'>Python</span>
-und
-<span class='label radius'>Perl</span>
-fühle ich wohl.
-</p>
-</div>
-<div class='web service columns large-6'>
-<div class='img'></div>
-<h3>Web-Technologien</h3>
-<p>
-Von Rapid Prototyping bis zu grossen Web-Projekten:
-<span class='label radius'>Ruby on Rails</span>
-und
-<span class='label radius'>Symfony</span>
-sind die Web-Frameworks meiner Wahl.
-Erfahrung mit
-<span class='label radius'>Node.js</span>
-und
-<span class='label radius'>Twisted</span>
-ergänzen mein Know-How in hochperformanten und eventbasierten
-Umgebungen.
-</p>
-</div>
-</div>
-<div class='services row'>
-<div class='frontend service columns large-6'>
-<div class='img'></div>
-<h3>Front-end Entwicklung</h3>
-<p>
-Die
-<span class='label radius'>Mobile first</span>
-und
-<span class='label radius'>Responsive Design</span>
-Methodologien helfen mir ihre Web Applikation optimal für mobile
-Endgeräte zu entwickeln.
-<span class='label radius'>jQuery</span>
-,
-<span class='label radius'>Backbone.js</span>
-und
-<span class='label radius'>Underscore.js</span>
-sind nur einige, häufig verwendete Tools.
-</p>
-</div>
-<div class='dataprocessing service columns large-6'>
-<div class='img'></div>
-<h3>Data Processing</h3>
-<p>
-Für die Verarbeitung grosser Datenmengen nehme ich bewährte Tools wie
-<span class='label radius'>Lucene/Solr</span>
-oder
-<span class='label radius'>elasticsearch</span>
-zur Hilfe.
-</p>
-</div>
-</div>
-<div class='services row'>
-<div class='systems service columns large-6'>
-<div class='img'></div>
-<h3>Systeme und Services</h3>
-<p>
-Ob im Server- oder Embeddedbereich kommt
-<span class='label radius'>GNU/Linux</span>
-und
-<span class='label radius'>Docker</span>
-als solide und stabile Plattformen zum Zug.
-Diese Grundlage für Web-Projekte, in Kombination mit
-<span class='label radius'>Amazon cloud</span>
-oder PaaS Anbietern wie
-<span class='label radius'>Heroku,</span>
-erlaubt es mir, flexibel und sparsam mit Resourcen umzugehen.
-</p>
-</div>
-<div class='oss service columns large-6'>
-<div class='img'></div>
-<h3>Open Source Software</h3>
-<p>
-Open Source Software gilt als wichtiger Baustein im Einsatz als
-3rd-party Software, Plattform oder Library.
-Wo möglich, veröffentliche ich eigene Entwicklungen unter einer
-<span class='label radius'>Open Source Lizenz</span>
-zum Beispiel auf
-<a href="http://github.com/kpricorn"><span class='label radius'>GitHub</span>
-</a>
-und
-<a href="http://gitlab.com/kpricorn"><span class='label radius'>GitLab</span>
-</a>
-</p>
-</div>
-</div>
-</section>
-<section class='page' id='clients'>
-<h1>Kunden</h1>
-<div class='clients row'>
-<div class='client swisscom columns small-6 large-3 large-uncentered'>
-<div class='img' title='Swisscom (Schweiz) AG'></div>
-</div>
-<div class='client screenconcept columns small-6 large-3 large-uncentered'>
-<div class='img' title='Screen Concept'></div>
-</div>
-<div class='client rayneer columns small-6 large-3 large-uncentered'>
-<div class='img' title='Rayneer TV'></div>
-</div>
-<div class='client fela columns small-6 large-3 large-uncentered'>
-<div class='img' title='Fela Management AG'></div>
-</div>
-</div>
-<div class='clients row'>
-<div class='client winterlife columns small-6 large-3 large-uncentered'>
-<div class='img' title='Winterlife'></div>
-</div>
-<div class='client plex-lab columns small-6 large-3 large-uncentered'>
-<div class='img' title='Plex Lab AG'></div>
-</div>
-</div>
-</section>
-<section class='page' id='contact'>
-<h1>Kontakt</h1>
-<div class='row'>
-<div class='contactinfo columns medium-3 medium-offset-1 small-offset-1 small-10 end'>
-<p>
-gorilla software GmbH
-<br>
-c/o Sebastian de Castelberg
-<br>
-Wasserschöpfi 32
-<br>
-8055 Zürich
-</p>
-<p>
-<a href="mailto:sebastian@gorillasoftware.ch">sebastian@gorillasoftware.ch</a>
-</p>
-<div class='media cleafix'>
-<a class="github" href="http://github.com/gorillasoftware"></a>
-</div>
-<div class='clearfix'></div>
-</div>
-<form action='https://gorillasoftware.wufoo.com/forms/z7x4m1/#public' autocomplete='off' class='columns medium-6 small-offset-1 small-10 end' enctype='multipart/form-data' id='contactform' method='post' name='form1' novalidate='' target='_blank'>
-<input id='idstamp' name='idstamp' type='hidden' value='gpZrPXiPuQ+vYMant8YxoXNTtMh22XItHEJTkG4Il4Q='>
-<fieldset>
-<div class='vorname'>
-<label for='Field5'>Vorname</label>
-<input id='Field5' name='Field5' type='text' value=''>
-</div>
-<div class='nachname'>
-<label for='Field6'>Nachname</label>
-<input id='Field6' name='Field6' type='text' value=''>
-</div>
-<div class='email'>
-<label for='Field7'>Email</label>
-<input id='Field7' maxlength='255' name='Field7' spellcheck='false' type='email' value=''>
-</div>
-</fieldset>
-<fieldset>
-<div class='message'>
-<label for='messageform'>Nachricht</label>
-<textarea id='messageform' name='Field8'></textarea>
-</div>
-<a onclick="$(this).closest(&quot;form&quot;).submit(); return false;" class="signup submit" href="#">Verschicken</a>
-</fieldset>
-</form>
-</div>
-</section>
-</div>
-</div>
-<footer id='footer-container'>
-<div id='footer'>
-<div class='ruler'></div>
-<div class='newsletter row'>
-<form action='https://gorillasoftware.us7.list-manage.com/subscribe/post?u=5a4a472acf94be0e77c5796b6&amp;id=e9c19870ae' method='post' name='mc-embedded-subscribe-form' novalidate='' target='_blank'>
-<div class='columns medium-12 large-3'>
-<h2>Newsletter</h2>
-</div>
-<div class='columns medium-9 large-7'>
-<input class='email' id='newsletter' name='EMAIL' placeholder='E-Mail Adresse' required='' type='email' value=''>
-</div>
-<div class='columns medium-3 large-2'>
-<a onclick="$(this).closest(&quot;form&quot;).submit(); return false;" class="subscribe submit" href="#">Eintragen</a>
-</div>
-</form>
-</div>
-<div class='license'>
-<div class='row'>
-<div class='columns small-8 medium-9 large-10'>
-<p>
-<span property='dct:title' xmlns:dct='http://purl.org/dc/terms/'>
-Texts on gorilla software website and gorilla software blog
-</span>
-by
-<a property="cc:attributionName" rel="cc:attributionURL" xmlns:cc="https://creativecommons.org/ns#" href="http://gorillasoftware.ch">gorilla software GmbH
-</a>
-is licensed under a
-<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License
-</a>
-</p>
-</div>
-<div class='columns small-4 medium-3 large-2'>
-<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
-</a>
-</div>
-</div>
-<div class='row'>
-<div class='columns small-12 medium-9'>
-<p>artwork and logo © 2020 gorilla software GmbH. All Rights Reserved.</p>
-</div>
-</div>
-</div>
-</div>
-
-</footer>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous" type="text/javascript"></script>
-<script src="/javascripts/all-390e3106.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(["_setAccount", "UA-24038149-1"]);
-  _gaq.push(["_setDomainName", "gorillasoftware.ch"]);
-  _gaq.push(["_setAllowLinker", true]);
-  _gaq.push(["_trackPageview"]);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+</main>
+<script src="/assets/landing.js" defer></script>
 </body>
 </html>

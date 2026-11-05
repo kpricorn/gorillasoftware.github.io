@@ -4,6 +4,9 @@
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s) => document.querySelector(s);
 
+  const PALETTE = ['#e2675c', '#f4b63f', '#2a9d8f', '#f29bb4', '#5b8def', '#3f8f5a'];
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+
   /* ---------- Email: split into letters ---------- */
   const email = $('.email');
   const address = email.dataset.user + '@' + email.dataset.domain;
@@ -16,6 +19,7 @@
     s.textContent = c;
     s.setAttribute('aria-hidden', 'true');
     s.style.setProperty('--i', i);
+    s.style.setProperty('--c', PALETTE[i % PALETTE.length]);
     s.style.setProperty('--tilt', (Math.random() * 16 - 8).toFixed(1) + 'deg');
     email.appendChild(s);
   });
@@ -24,7 +28,7 @@
   copyBtn.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(address);
-      copyBtn.textContent = 'copied 🍌';
+      copyBtn.textContent = 'copied!';
     } catch (e) {
       copyBtn.textContent = address;
     }
@@ -32,66 +36,101 @@
     setTimeout(() => { copyBtn.textContent = 'copy address'; copyBtn.classList.remove('done'); }, 1800);
   });
 
-  /* ---------- Fireflies ---------- */
+  /* ---------- Flat confetti shapes ---------- */
   const canvas = $('#jungle');
   const ctx = canvas.getContext('2d');
   let W = 0, H = 0, dpr = 1;
   const mouse = { x: -9999, y: -9999 };
-  const flies = [];
+  const shapes = [];   // ambient, wrap around
+  const bits = [];     // bursts + bananas, die off-screen
+  const KINDS = ['circle', 'square', 'triangle', 'half', 'plus', 'squiggle', 'ring'];
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = window.innerWidth; H = window.innerHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const target = Math.round(Math.min(140, (W * H) / 9000));
-    while (flies.length < target) flies.push(spawn());
-    flies.length = target;
+    const target = Math.round(Math.min(34, Math.max(12, (W * H) / 38000)));
+    while (shapes.length < target) shapes.push(makeShape(Math.random() * W, Math.random() * H));
+    shapes.length = target;
   }
 
-  function spawn() {
-    return {
-      x: Math.random() * W, y: Math.random() * H,
-      vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
-      r: Math.random() * 1.8 + .6,
-      phase: Math.random() * Math.PI * 2,
-      speed: Math.random() * .02 + .008,
-      hue: Math.random() < .25 ? 8 : 38,
-    };
+  function makeShape(x, y, o = {}) {
+    return Object.assign({
+      x, y,
+      vx: (Math.random() - .5) * .4, vy: (Math.random() - .5) * .4,
+      size: 10 + Math.random() * 22,
+      rot: Math.random() * Math.PI * 2,
+      vr: (Math.random() - .5) * .02,
+      kind: pick(KINDS),
+      color: pick(PALETTE),
+    }, o);
   }
 
-  function tick(t) {
-    ctx.clearRect(0, 0, W, H);
-    ctx.globalCompositeOperation = 'lighter';
-    for (const f of flies) {
-      const dx = f.x - mouse.x, dy = f.y - mouse.y;
-      const d2 = dx * dx + dy * dy;
-      if (d2 < 22000) {
-        const d = Math.sqrt(d2) || 1;
-        f.vx += (dx / d) * .35; f.vy += (dy / d) * .35;
-      }
-      f.vx += (Math.random() - .5) * .04;
-      f.vy += (Math.random() - .5) * .04 - .004;
-      f.vx *= .96; f.vy *= .96;
-      f.x += f.vx; f.y += f.vy;
-      if (f.x < -20) f.x = W + 20; else if (f.x > W + 20) f.x = -20;
-      if (f.y < -20) f.y = H + 20; else if (f.y > H + 20) f.y = -20;
-
-      f.phase += f.speed;
-      const glow = (Math.sin(f.phase) + 1) / 2;
-      const a = .15 + glow * .75;
-      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 7);
-      g.addColorStop(0, `hsla(${f.hue}, 95%, 72%, ${a})`);
-      g.addColorStop(.25, `hsla(${f.hue}, 90%, 60%, ${a * .35})`);
-      g.addColorStop(1, `hsla(${f.hue}, 90%, 50%, 0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 7, 0, Math.PI * 2); ctx.fill();
+  function draw(s) {
+    const r = s.size / 2;
+    ctx.save();
+    ctx.translate(s.x, s.y);
+    ctx.rotate(s.rot);
+    ctx.fillStyle = s.color;
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = Math.max(3, s.size / 5);
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    switch (s.kind) {
+      case 'circle': ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill(); break;
+      case 'square': ctx.roundRect ? ctx.roundRect(-r, -r, s.size, s.size, r * .25) : ctx.rect(-r, -r, s.size, s.size); ctx.fill(); break;
+      case 'triangle': ctx.moveTo(0, -r); ctx.lineTo(r * .95, r * .75); ctx.lineTo(-r * .95, r * .75); ctx.closePath(); ctx.fill(); break;
+      case 'half': ctx.arc(0, 0, r, 0, Math.PI); ctx.closePath(); ctx.fill(); break;
+      case 'ring': ctx.arc(0, 0, r * .8, 0, Math.PI * 2); ctx.stroke(); break;
+      case 'plus': ctx.moveTo(-r, 0); ctx.lineTo(r, 0); ctx.moveTo(0, -r); ctx.lineTo(0, r); ctx.stroke(); break;
+      case 'squiggle':
+        ctx.moveTo(-r * 1.4, 0);
+        for (let i = 1; i <= 4; i++) ctx.quadraticCurveTo(-r * 1.4 + (i - .5) * r * .7, (i % 2 ? -1 : 1) * r * .6, -r * 1.4 + i * r * .7, 0);
+        ctx.stroke(); break;
+      case 'banana':
+        ctx.arc(0, 0, r, Math.PI * .15, Math.PI * .85);
+        ctx.arc(0, -r * .35, r * 1.05, Math.PI * .8, Math.PI * .2, true);
+        ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#483831';
+        ctx.beginPath(); ctx.arc(Math.cos(Math.PI * .15) * r, Math.sin(Math.PI * .15) * r - r * .1, r * .12, 0, Math.PI * 2); ctx.fill();
+        break;
     }
-    ctx.globalCompositeOperation = 'source-over';
-    if (!reduced) requestAnimationFrame(tick);
+    ctx.restore();
   }
 
-  window.addEventListener('resize', resize);
+  function step(s, wrap) {
+    const dx = s.x - mouse.x, dy = s.y - mouse.y;
+    const d2 = dx * dx + dy * dy;
+    if (d2 < 18000) {
+      const d = Math.sqrt(d2) || 1;
+      s.vx += (dx / d) * .5; s.vy += (dy / d) * .5;
+      s.vr += (Math.random() - .5) * .02;
+    }
+    if (wrap) {
+      s.vx *= .97; s.vy *= .97; s.vr *= .99;
+      s.vx += (Math.random() - .5) * .03; s.vy += (Math.random() - .5) * .03;
+      const pad = 40;
+      if (s.x < -pad) s.x = W + pad; else if (s.x > W + pad) s.x = -pad;
+      if (s.y < -pad) s.y = H + pad; else if (s.y > H + pad) s.y = -pad;
+    } else {
+      s.vx *= .99; s.vy = s.vy * .99 + s.g;
+    }
+    s.x += s.vx; s.y += s.vy; s.rot += s.vr;
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of shapes) { if (!reduced) step(s, true); draw(s); }
+    for (let i = bits.length - 1; i >= 0; i--) {
+      const b = bits[i];
+      step(b, false); draw(b);
+      if (b.y > H + 80 || b.x < -120 || b.x > W + 120) bits.splice(i, 1);
+    }
+    if (!reduced || bits.length) requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', () => { resize(); if (reduced) tick(); });
   resize();
   requestAnimationFrame(tick);
 
@@ -118,7 +157,7 @@
       marquee.style.translate = `${px * 30}px ${py * 20}px`;
     }
   });
-  window.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  document.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
 
   (function blinkLoop() {
     setTimeout(() => {
@@ -148,34 +187,47 @@
   }
 
   const words = ['thump', 'boom', 'ooh ooh', 'grr', 'bam', 'hoo!'];
+  const root = document.documentElement;
   let beats = 0;
+  let sunIdx = 0;
+
+  function recolor() {
+    sunIdx = (sunIdx + 1) % PALETTE.length;
+    root.style.setProperty('--sun', PALETTE[sunIdx]);
+    root.style.setProperty('--offset', PALETTE[(sunIdx + 1) % PALETTE.length]);
+  }
 
   function beat() {
     beats++;
     btn.classList.remove('beat'); void btn.offsetWidth; btn.classList.add('beat');
     drum(0, 120); drum(.14, 95);
+    recolor();
+
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height * .45;
 
     if (!reduced) {
       document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
       for (let i = 0; i < 2; i++) {
         const ring = document.createElement('span');
         ring.className = 'ring';
+        ring.style.setProperty('--c', PALETTE[(sunIdx + 2 + i) % PALETTE.length]);
         ring.style.animationDelay = i * 140 + 'ms';
         hero.appendChild(ring);
         setTimeout(() => ring.remove(), 1200);
       }
-      const r = btn.getBoundingClientRect();
-      const cx = r.left + r.width / 2, cy = r.top + r.height * .45;
-      for (const f of flies) {
-        const dx = f.x - cx, dy = f.y - cy, d = Math.hypot(dx, dy) || 1;
+      for (const s of shapes) {
+        const dx = s.x - cx, dy = s.y - cy, d = Math.hypot(dx, dy) || 1;
         const k = Math.max(0, 1 - d / 700) * 9;
-        f.vx += dx / d * k; f.vy += dy / d * k;
+        s.vx += dx / d * k; s.vy += dy / d * k; s.vr += (Math.random() - .5) * .2;
       }
+      burst(cx, cy, 18);
     }
 
     const w = document.createElement('span');
     w.className = 'thump';
-    w.textContent = words[Math.floor(Math.random() * words.length)];
+    w.textContent = pick(words);
+    w.style.setProperty('--c', pick(PALETTE));
     w.style.left = 20 + Math.random() * 60 + '%';
     w.style.top = 25 + Math.random() * 25 + '%';
     w.style.setProperty('--r', (Math.random() * 30 - 15).toFixed(0) + 'deg');
@@ -185,24 +237,29 @@
     if (beats % 7 === 0) bananaRain();
   }
 
+  function burst(x, y, n) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2, v = 4 + Math.random() * 7;
+      bits.push(makeShape(x, y, {
+        vx: Math.cos(a) * v, vy: Math.sin(a) * v - 3, g: .25,
+        vr: (Math.random() - .5) * .3, size: 8 + Math.random() * 14,
+      }));
+    }
+    if (reduced) requestAnimationFrame(tick);
+  }
+
   btn.addEventListener('click', beat);
 
   /* ---------- Bananas ---------- */
   function bananaRain() {
     if (reduced) return;
-    const n = Math.min(60, Math.round(W / 20));
+    const n = Math.min(50, Math.round(W / 24));
     for (let i = 0; i < n; i++) {
-      const b = document.createElement('span');
-      b.className = 'banana';
-      b.textContent = '🍌';
-      b.style.left = Math.random() * 100 + 'vw';
-      b.style.fontSize = 1.2 + Math.random() * 2 + 'rem';
-      b.style.setProperty('--d', 2.2 + Math.random() * 2.5 + 's');
-      b.style.setProperty('--dx', (Math.random() * 200 - 100).toFixed(0) + 'px');
-      b.style.setProperty('--spin', (Math.random() * 1440 - 720).toFixed(0) + 'deg');
-      b.style.animationDelay = Math.random() * 1.2 + 's';
-      document.body.appendChild(b);
-      setTimeout(() => b.remove(), 6500);
+      bits.push(makeShape(Math.random() * W, -40 - Math.random() * H * .8, {
+        kind: 'banana', color: '#f4b63f', size: 22 + Math.random() * 26,
+        vx: (Math.random() - .5) * 1.5, vy: 1 + Math.random() * 2, g: .05,
+        vr: (Math.random() - .5) * .12,
+      }));
     }
   }
 
@@ -213,5 +270,5 @@
     if (typed === 'banana') { bananaRain(); typed = ''; }
   });
 
-  console.log('%c🦍 gorilla software', 'font-size:20px;font-weight:bold;color:#cd6e68', '\nHi there, fellow dev. Type "banana" on the page. Then write us: ' + address);
+  console.log('%cgorilla software', 'font-size:20px;font-weight:800;color:#e2675c', '\nHi there, fellow dev. Type "banana" on the page. Then write us: ' + address);
 })();
